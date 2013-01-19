@@ -26,14 +26,8 @@ module Slodown
 
     # Sanitize HTML tags.
     #
-    def sanitize(mode = :normal)
-      @current = case mode
-      when :normal
-        Sanitize.clean(@current, sanitize_config)
-      else
-        Sanitize.clean(@current)
-      end
-
+    def sanitize
+      @current = Sanitize.clean(@current, sanitize_config)
       self
     end
 
