@@ -69,7 +69,7 @@ formatter.complete.to_s
 ## TODOs
 
 - More/better specs. slodown doesn't have a lot of functionality of its own, passing most of its duties over to the beautiful rendering gems it uses, but I'm sure there's still an opportunity or two for it to break, so, yeah, I should be adding _some_ specs.
-- Better configuration for the HTML sanitizer. Right now, the list of allowed tags, attributes and protocols are hardcoded for what I'm using on [sloblog.io](http://sloblog.io); chances are your needs will be different.
+- Better configuration for the HTML sanitizer. Right now, in order to change the sanitizing behavior, you'll need to inherit a new class from `Slodown::Formatter` and override its `#sanitize_config` method. Regarding the contents of the hash this method returns, please refer to the [sanitize documentation](https://github.com/rgrove/sanitize#custom-configuration).
 
 ## Contributing
 
