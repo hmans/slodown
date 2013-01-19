@@ -39,10 +39,13 @@ For every piece of user input that needs to be rendered, create an instance of `
 # let's create an instance to work with
 formatter = Slodown::Formatter.new(text)
 
-# just markdown
+# just render Markdown to HTML
 formatter.markdown.to_s
 
-# just HTML tag sanitizing
+# just auto-link contained URLs
+formatter.autolink.to_s
+
+# just sanitize HTML tags
 formatter.sanitize.to_s
 
 # you can chain multiple operations
