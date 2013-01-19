@@ -4,6 +4,8 @@
 # Markdown image elements.)
 #
 class Kramdown::Converter::SlodownHtml < Kramdown::Converter::Html
+  # Hook into image tags to allow oEmbed embeds.
+  #
   def convert_img(el, indent)
     oembed = OEmbed::Providers.get(el.attr['src'])
     %q(<div class="embedded %s %s">%s</div>) % [oembed.type, oembed.provider_name.parameterize, oembed.html]
