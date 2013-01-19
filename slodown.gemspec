@@ -16,4 +16,10 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+
+  gem.add_dependency  'kramdown'
+  gem.add_dependency  'coderay'
+  gem.add_dependency  'sanitize'
+  gem.add_dependency  'rinku'
+  gem.add_dependency  'ruby-oembed', '~> 0.8.8'
 end
