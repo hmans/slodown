@@ -2,6 +2,13 @@
 
 I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. **Slodown** rolls all of these into one, and then some.
 
+Here's what Slodown does by default:
+
+- **render extended Markdown into HTML**. It uses the [kramdown](http://kramdown.rubyforge.org/) library, so yes, footnotes are supported!
+- **supports super-easy rich media embeds**, [sloblog.io-style](http://sloblog.io/~hmans/qhdsk2SMoAU). Just point the Markdown image syntax at, say, a Youtube video, and Slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
+- **auto-link contained URLs** using [Rinku](https://github.com/vmg/rinku), which is smart enough to not auto-link URLs contained in, say, code blocks.
+- **sanitize the generated HTML** using the white-list based [sanitize](https://github.com/rgrove/sanitize) gem.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,9 +25,9 @@ Or install it yourself as:
 
 ## Usage
 
-For every piece of user input that needs to be rendered, create an instance of `Slodown::Formatter` with the source text and use it to perform one or all transformations on it. Finally, call `#to_s` to get the rendered output.
+For every piece of user input that needs to be rendered, create an instance of `Slodown::Formatter` with the source text and use it to perform somre or all transformations on it. Finally, call `#to_s` to get the rendered output.
 
-Examples:
+### Examples:
 
 ~~~ruby
 # let's create an instance to work with
@@ -42,7 +49,11 @@ formatter = Slodown::Formatter.new(text)
 @formatter.complete.to_s
 ~~~
 
-If you want to add more transformations or change the behavior of the `#complete` method, just subclass `Slodown::Formatter` and go wild. :-)
+## Hints
+
+* If you want to add more transformations or change the behavior of the `#complete` method, just subclass `Slodown::Formatter` and go wild. :-)
+* Markdown transformations, HTML sanitizing, oEmbed handshakes and other operations are pretty expensive operations. For sake of performance (and stability), it is recommended that you cache the generated output in some manner.
+* Eat more Schnitzel.
 
 
 ## Contributing
