@@ -12,6 +12,9 @@ Here's what Slodown does by default:
 - **auto-link contained URLs** using [Rinku](https://github.com/vmg/rinku), which is smart enough to not auto-link URLs contained in, say, code blocks.
 - **sanitize the generated HTML** using the white-list based [sanitize](https://github.com/rgrove/sanitize) gem.
 
+Slodown is very easy to extend or modify, as it's just a plain old Ruby class you can inherit from.
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
