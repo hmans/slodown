@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Slodown::VERSION
   gem.authors       = ["Hendrik Mans"]
   gem.email         = ["hendrik@mans.de"]
-  gem.description   = %q{Markdown formatting code, extracted from sloblog.io.}
-  gem.summary       = %q{Markdown formatting code, extracted from sloblog.io.}
+  gem.description   = %q{Markdown + oEmbed + Sanitize + CodeRay = the ultimate user input rendering pipeline.}
+  gem.summary       = %q{Markdown + oEmbed + Sanitize + CodeRay = the ultimate user input rendering pipeline.}
   gem.homepage      = "http://github.com/hmans/slodown"
 
   gem.files         = `git ls-files`.split($/)

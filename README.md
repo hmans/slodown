@@ -1,6 +1,6 @@
-# Slodown
+# Slodown: the ultimate user input rendering pipeline.
 
-TODO: Write a gem description
+I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. **Slodown** rolls all of these into one, and then some.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+_Coming soon._
 
 ## Contributing
 
