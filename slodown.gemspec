@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Slodown::VERSION
   gem.authors       = ["Hendrik Mans"]
   gem.email         = ["hendrik@mans.de"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Markdown formatting code, extracted from sloblog.io.}
+  gem.summary       = %q{Markdown formatting code, extracted from sloblog.io.}
+  gem.homepage      = "http://github.com/hmans/slodown"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
