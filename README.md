@@ -37,19 +37,19 @@ For every piece of user input that needs to be rendered, create an instance of `
 formatter = Slodown::Formatter.new(text)
 
 # just markdown
-@formatter.markdown.to_s
+formatter.markdown.to_s
 
 # just HTML tag sanitizing
-@formatter.sanitize.to_s
+formatter.sanitize.to_s
 
 # you can chain multiple operations
-@formatter.markdown.sanitize.to_s
+formatter.markdown.sanitize.to_s
 
 # this is the whole deal:
-@formatter.markdown.autolink.sanitize.to_s
+formatter.markdown.autolink.sanitize.to_s
 
 # which is the same as:
-@formatter.complete.to_s
+formatter.complete.to_s
 ~~~
 
 ## Hints
