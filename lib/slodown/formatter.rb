@@ -38,7 +38,7 @@ module Slodown
             img object param del
           ),
           attributes: {
-            :all     => ['class', 'style', 'title'],
+            :all     => ['class', 'style', 'title', 'id'],
             'a'      => ['href', 'rel', 'name'],
             'li'     => ['id'],
             'sup'    => ['id'],
