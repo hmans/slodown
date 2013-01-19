@@ -5,6 +5,7 @@ I love Markdown. I love syntax highlighting. I love oEmbed. And last but not lea
 Here's what Slodown does by default:
 
 - **render extended Markdown into HTML**. It uses the [kramdown](http://kramdown.rubyforge.org/) library, so yes, footnotes are supported!
+- **adds syntax highlighting to Markdown code blocks** through [CodeRay](http://coderay.rubychan.de/).
 - **supports super-easy rich media embeds**, [sloblog.io-style](http://sloblog.io/~hmans/qhdsk2SMoAU). Just point the Markdown image syntax at, say, a Youtube video, and Slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
 - **auto-link contained URLs** using [Rinku](https://github.com/vmg/rinku), which is smart enough to not auto-link URLs contained in, say, code blocks.
 - **sanitize the generated HTML** using the white-list based [sanitize](https://github.com/rgrove/sanitize) gem.
@@ -55,6 +56,10 @@ formatter = Slodown::Formatter.new(text)
 * Markdown transformations, HTML sanitizing, oEmbed handshakes and other operations are pretty expensive operations. For sake of performance (and stability), it is recommended that you cache the generated output in some manner.
 * Eat more Schnitzel.
 
+## TODOs
+
+- More/better specs. Slodown doesn't have a lot of functionality of its own, passing most of its duties over to the beautiful rendering gems it uses, but I'm sure there's still an opportunity or two for it to break, so, yeah, I should be adding _some_ specs.
+- Better configuration for the HTML sanitizer. Right now, the list of allowed tags, attributes and protocols are hardcoded for what I'm using on [sloblog.io](http://sloblog.io); chances are your needs will be different.
 
 ## Contributing
 
