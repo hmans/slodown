@@ -1,4 +1,6 @@
-# Slodown: the ultimate user input rendering pipeline.
+![slodown](https://dl.dropbox.com/u/7288/hendrik.mans.de/slodown.png)
+
+# Slodown is the ultimate user input rendering pipeline.
 
 [![Build Status](https://travis-ci.org/hmans/slodown.png?branch=master)](https://travis-ci.org/hmans/slodown) [![Gem Version](https://badge.fury.io/rb/slodown.png)](http://badge.fury.io/rb/slodown)
 
