@@ -1,6 +1,8 @@
 # Slodown: the ultimate user input rendering pipeline.
 
-I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. **Slodown** rolls all of these into one, and then some.
+[![Build Status](https://travis-ci.org/hmans/slodown.png?branch=master)](https://travis-ci.org/hmans/slodown) [![Gem Version](https://badge.fury.io/rb/slodown.png)](http://badge.fury.io/rb/slodown)
+
+**I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. Slodown rolls all of these into one, and then some.**
 
 Here's what Slodown does by default:
 
