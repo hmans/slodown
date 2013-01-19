@@ -22,4 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency  'sanitize'
   gem.add_dependency  'rinku'
   gem.add_dependency  'ruby-oembed', '~> 0.8.8'
+
+  gem.add_development_dependency 'rspec', '>= 2.12.0'
+  gem.add_development_dependency 'rspec-html-matchers'
 end
