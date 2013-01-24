@@ -7,7 +7,7 @@ module Slodown
     # Runs the entire pipeline.
     #
     def complete
-      markdown.autolink.sanitize
+      highlight.markdown.autolink.sanitize
     end
 
     # Convert the current document state from Markdown into HTML.
@@ -28,6 +28,19 @@ module Slodown
     #
     def sanitize
       @current = Sanitize.clean(@current, sanitize_config)
+      self
+    end
+    
+    # Highlight fenced code blocks.
+    # 
+    def highlight
+      copy = @current.dup
+      regexp = /```([a-z]+)(.*?)```/m
+      @current.scan(regexp).each do |lang, block|	
+        copy.gsub!(Regexp.last_match.to_s,
+        CodeRay.scan(block, lang.intern).div)	
+      end
+      @current = copy
       self
     end
 
