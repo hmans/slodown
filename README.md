@@ -33,7 +33,7 @@ Or install it yourself as:
 
 ## Usage
 
-For every piece of user input that needs to be rendered, create an instance of `Slodown::Formatter` with the source text and use it to perform somre or all transformations on it. Finally, call `#to_s` to get the rendered output.
+For every piece of user input that needs to be rendered, create an instance of `Slodown::Formatter` with the source text and use it to perform some or all transformations on it. Finally, call `#to_s` to get the rendered output.
 
 ### Examples:
 
