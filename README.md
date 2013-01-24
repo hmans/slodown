@@ -9,13 +9,12 @@
 Here's what slodown does by default:
 
 - **render extended Markdown into HTML**. It uses the [kramdown](http://kramdown.rubyforge.org/) library, so yes, footnotes are supported!
-- **adds syntax highlighting to Markdown code blocks** through [CodeRay](http://coderay.rubychan.de/).
-- **supports super-easy rich media embeds**, [sloblog.io-style](http://sloblog.io/~hmans/qhdsk2SMoAU). Just point the Markdown image syntax at, say, a Youtube video, and slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
+- **add syntax highlighting to Markdown code blocks** through [CodeRay](http://coderay.rubychan.de/).
+- **support super-easy rich media embeds**, [sloblog.io-style](http://sloblog.io/~hmans/qhdsk2SMoAU). Just point the Markdown image syntax at, say, a Youtube video, and slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
 - **auto-link contained URLs** using [Rinku](https://github.com/vmg/rinku), which is smart enough to not auto-link URLs contained in, say, code blocks.
 - **sanitize the generated HTML** using the white-list based [sanitize](https://github.com/rgrove/sanitize) gem.
 
 slodown is an extraction from [sloblog.io](http://sloblog.io). It is very easy to extend or modify, as it's just a plain old Ruby class you can inherit from.
-
 
 ## Installation
 
