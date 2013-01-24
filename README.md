@@ -78,3 +78,13 @@ formatter.complete.to_s
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Version History
+
+### development
+
+- Support for Twitter oEmbed (using an unfortunately deprecated API, nonetheless.)
+
+### 0.1.3
+
+- first public release
