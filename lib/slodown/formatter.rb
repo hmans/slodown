@@ -1,5 +1,7 @@
 module Slodown
   class Formatter
+    attr_accessor :sanitize_config
+
     def initialize(source)
       @current = @source = source.to_s
     end
@@ -35,12 +37,11 @@ module Slodown
       @current
     end
 
-  private
-
     def sanitize_config
-      {
+      @sanitize_config ||= {
         elements: %w(
           p a span sub sup strong em div hr abbr
+          big small
           ul ol li
           blockquote pre code
           h1 h2 h3 h4 h5 h6
