@@ -41,6 +41,7 @@ module Slodown
       {
         elements: %w(
           p a span sub sup strong em div hr abbr
+          big small
           ul ol li
           blockquote pre code
           h1 h2 h3 h4 h5 h6
