@@ -72,11 +72,17 @@ formatter.complete.to_s
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Just like with my other gems, I am trying to keep slodown as sane (and small) as possible. If you
+want to contribute code, **please talk to me before writing a patch or submitting
+a pull request**! I'm serious about keeping things focused and would hate to cause
+unnecessary disappointment. Thank you.
+
+If you're still set on submitting a pull request, please consider the following:
+
+1. Create your pull request from a _feature branch_.
+2. The pull request must only contain changes _related to the feature_.
+3. Please include specs where it makes sense.
+4. Absolutely _no_ version bumps or similar.
 
 ## Version History
 
