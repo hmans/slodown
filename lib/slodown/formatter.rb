@@ -13,7 +13,7 @@ module Slodown
     # Convert the current document state from Markdown into HTML.
     #
     def markdown
-      @current = Kramdown::Document.new(@current).to_slodown_html
+      @current = Kramdown::Document.new(@current, kramdown_options).to_slodown_html
       self
     end
 
@@ -36,6 +36,10 @@ module Slodown
     end
 
   private
+
+    def kramdown_options
+      { coderay_css: 'style' }
+    end
 
     def sanitize_config
       {
