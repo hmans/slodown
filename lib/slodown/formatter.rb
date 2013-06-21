@@ -46,7 +46,7 @@ module Slodown
         elements: %w(
           p br a span sub sup strong em div hr abbr
           ul ol li
-          blockquote pre code
+          blockquote pre code kbd
           h1 h2 h3 h4 h5 h6
           img object param del
         ),
