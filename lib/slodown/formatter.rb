@@ -1,7 +1,8 @@
 module Slodown
   class Formatter
     def initialize(source)
-      @current = @source = source.to_s
+      @source  = extract_metadata(source.to_s)
+      @current = @source
     end
 
     # Runs the entire pipeline.
@@ -31,11 +32,28 @@ module Slodown
       self
     end
 
+    # Return a hash with the extracted metadata
+    #
+    def metadata
+      @metadata
+    end
+
     def to_s
       @current
     end
 
   private
+
+    def extract_metadata(source)
+      @metadata = {}
+
+      source.each_line.drop_while do |line|
+        next false if line !~ /^#\+([a-z_]+): (.*)/
+
+        key, value = $1, $2
+        @metadata[key.to_sym] = value
+      end.join('')
+    end
 
     def kramdown_options
       { coderay_css: 'style' }
