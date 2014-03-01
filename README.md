@@ -59,6 +59,28 @@ formatter.markdown.autolink.sanitize.to_s
 formatter.complete.to_s
 ~~~
 
+### Metadata
+
+Slodown allows metadata, such as the creation date, to be defined in the text to be processed:
+
+~~~markdown
+#+title: Slodown
+#+created_at: 2014-03-01 13:51:12 CET
+# Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'slodown'
+
+...
+~~~
+
+Metadata can be accessed with via `Slodown::Formatter#metadata`:
+
+~~~ruby
+formatter.metadata[:title] # => "Slodown"
+~~~
+
 ## Hints
 
 * If you want to add more transformations or change the behavior of the `#complete` method, just subclass `Slodown::Formatter` and go wild. :-)
