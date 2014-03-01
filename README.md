@@ -40,6 +40,9 @@ For every piece of user input that needs to be rendered, create an instance of `
 # let's create an instance to work with
 formatter = Slodown::Formatter.new(text)
 
+# just extract metadata
+formatter.extract_metadata.to_s
+
 # just render Markdown to HTML
 formatter.markdown.to_s
 
@@ -53,7 +56,7 @@ formatter.sanitize.to_s
 formatter.markdown.sanitize.to_s
 
 # this is the whole deal:
-formatter.markdown.autolink.sanitize.to_s
+formatter.extract_metadata.markdown.autolink.sanitize.to_s
 
 # which is the same as:
 formatter.complete.to_s
@@ -75,7 +78,7 @@ Add this line to your application's Gemfile:
 ...
 ~~~
 
-Metadata can be accessed with via `Slodown::Formatter#metadata`:
+Metadata can be accessed with `Slodown::Formatter#metadata`:
 
 ~~~ruby
 formatter.metadata[:title] # => "Slodown"

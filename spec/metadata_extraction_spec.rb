@@ -12,7 +12,7 @@ describe '#metadata' do
     EOF
   end
 
-  let(:formatter) { Slodown::Formatter.new(text) }
+  let(:formatter) { Slodown::Formatter.new(text).complete }
 
   it 'returns metadata as a hash' do
     expect(formatter.metadata).to be_a(Hash)

@@ -1,14 +1,13 @@
 module Slodown
   class Formatter
     def initialize(source)
-      @source  = extract_metadata(source.to_s)
-      @current = @source
+      @current = @source = source.to_s
     end
 
     # Runs the entire pipeline.
     #
     def complete
-      markdown.autolink.sanitize
+      extract_metadata.markdown.autolink.sanitize
     end
 
     # Convert the current document state from Markdown into HTML.
@@ -32,6 +31,19 @@ module Slodown
       self
     end
 
+    def extract_metadata
+      @metadata = {}
+
+      @current = @current.each_line.drop_while do |line|
+        next false if line !~ /^#\+([a-z_]+): (.*)/
+
+        key, value = $1, $2
+        @metadata[key.to_sym] = value
+      end.join('')
+
+      self
+    end
+
     # Return a hash with the extracted metadata
     #
     def metadata
@@ -43,17 +55,6 @@ module Slodown
     end
 
   private
-
-    def extract_metadata(source)
-      @metadata = {}
-
-      source.each_line.drop_while do |line|
-        next false if line !~ /^#\+([a-z_]+): (.*)/
-
-        key, value = $1, $2
-        @metadata[key.to_sym] = value
-      end.join('')
-    end
 
     def kramdown_options
       { coderay_css: 'style' }
