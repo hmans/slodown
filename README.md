@@ -40,6 +40,9 @@ For every piece of user input that needs to be rendered, create an instance of `
 # let's create an instance to work with
 formatter = Slodown::Formatter.new(text)
 
+# just extract metadata
+formatter.extract_metadata.to_s
+
 # just render Markdown to HTML
 formatter.markdown.to_s
 
@@ -53,10 +56,32 @@ formatter.sanitize.to_s
 formatter.markdown.sanitize.to_s
 
 # this is the whole deal:
-formatter.markdown.autolink.sanitize.to_s
+formatter.extract_metadata.markdown.autolink.sanitize.to_s
 
 # which is the same as:
 formatter.complete.to_s
+~~~
+
+### Metadata
+
+Slodown allows metadata, such as the creation date, to be defined in the text to be processed:
+
+~~~markdown
+#+title: Slodown
+#+created_at: 2014-03-01 13:51:12 CET
+# Installation
+
+Add this line to your application's Gemfile:
+
+    gem 'slodown'
+
+...
+~~~
+
+Metadata can be accessed with `Slodown::Formatter#metadata`:
+
+~~~ruby
+formatter.metadata[:title] # => "Slodown"
 ~~~
 
 ## Hints

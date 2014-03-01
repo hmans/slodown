@@ -7,7 +7,7 @@ module Slodown
     # Runs the entire pipeline.
     #
     def complete
-      markdown.autolink.sanitize
+      extract_metadata.markdown.autolink.sanitize
     end
 
     # Convert the current document state from Markdown into HTML.
@@ -29,6 +29,25 @@ module Slodown
     def sanitize
       @current = Sanitize.clean(@current, sanitize_config)
       self
+    end
+
+    def extract_metadata
+      @metadata = {}
+
+      @current = @current.each_line.drop_while do |line|
+        next false if line !~ /^#\+([a-z_]+): (.*)/
+
+        key, value = $1, $2
+        @metadata[key.to_sym] = value
+      end.join('')
+
+      self
+    end
+
+    # Return a hash with the extracted metadata
+    #
+    def metadata
+      @metadata
     end
 
     def to_s
