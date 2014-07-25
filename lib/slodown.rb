@@ -22,7 +22,7 @@ OEmbed::Providers.register_all
 # Also please note that your application will need to load Twitter's
 # //platform.twitter.com/widgets.js in order for these embeds to work.
 #
-TwitterProvider = OEmbed::Provider.new("http://api.twitter.com/1/statuses/oembed.json?omit_script=true", :json)
+TwitterProvider = OEmbed::Provider.new("https://api.twitter.com/1/statuses/oembed.json?omit_script=true", :json)
 TwitterProvider << "http://*.twitter.com/*"
 TwitterProvider << "https://*.twitter.com/*"
 OEmbed::Providers.register(TwitterProvider)
