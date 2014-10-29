@@ -63,7 +63,7 @@ module Slodown
     def sanitize_config
       {
         elements: %w(
-          p br a span sub sup strong em div hr abbr
+          p br a span sub sup strong em div hr abbr s
           ul ol li
           blockquote pre code kbd
           h1 h2 h3 h4 h5 h6
