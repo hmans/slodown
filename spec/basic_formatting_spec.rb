@@ -9,6 +9,6 @@ describe 'basic formatting syntax' do
   # to test the whole of kramdown here. :)~
   #
   it "renders **this** as bold text" do
-    expect(render "**foo**").to eq "<p><strong>foo</strong></p>"
+    expect(render "**foo**").to eq "<p><strong>foo</strong></p>\n"
   end
 end
