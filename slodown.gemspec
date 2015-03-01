@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["hendrik@mans.de"]
   gem.description   = %q{Markdown + oEmbed + Sanitize + CodeRay = the ultimate user input rendering pipeline.}
   gem.summary       = %q{Markdown + oEmbed + Sanitize + CodeRay = the ultimate user input rendering pipeline.}
-  gem.homepage      = "http://github.com/hmans/slodown"
+  gem.homepage      = "https://github.com/hmans/slodown"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
