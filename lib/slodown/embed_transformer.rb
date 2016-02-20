@@ -1,6 +1,6 @@
 module Slodown
   class EmbedTransformer
-    ALLOWED_DOMAINS = %w[youtube.com soundcloud.com vimeo.com]
+    ALLOWED_DOMAINS = %w[youtube.com soundcloud.com vimeo.com instagram.com]
 
     def self.call(env)
       node      = env[:node]
