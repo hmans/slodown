@@ -2,11 +2,15 @@ module Slodown
   # This is the base Formatter class provided by Slodown. It works right
   # out of the box if you want to use exactly the functionality provided by
   # it, but in most projects, you'll probably want to create a new class
-  # inheriting from this one.
+  # inheriting from this one, selectively overriding methods like
+  # +kramdown_options+ or adding your own.
   #
   class Formatter
+    attr_reader :metadata
+
     def initialize(source)
       @current = @source = source.to_s
+      @metadata = {}
     end
 
     # Run the entire pipeline in a sane order.
@@ -39,6 +43,8 @@ module Slodown
       end
     end
 
+    # Extract metadata from the document.
+    #
     def extract_metadata
       @metadata = {}
 
@@ -52,25 +58,15 @@ module Slodown
       end
     end
 
-    # Return a hash with the extracted metadata
-    #
-    def metadata
-      @metadata
-    end
-
     def to_s
       @current
     end
 
-  private
-
-    # Applies a conversion of the current text state.
+    # Return a hash of configuration values for kramdown. Please refer to
+    # the documentation of kramdown for details:
     #
-    def convert(&blk)
-      @current = blk.call(@current)
-      self
-    end
-
+    # http://kramdown.gettalong.org/options.html
+    #
     def kramdown_options
       {
         syntax_highlighter: defined?(Rouge) ? 'rouge' : 'coderay',
@@ -78,6 +74,11 @@ module Slodown
       }
     end
 
+    # Return a hash of configuration values for the sanitize gem. Please refer
+    # to the documentation for sanitize for details:
+    #
+    # https://github.com/rgrove/sanitize#custom-configuration
+    #
     def sanitize_config
       {
         elements: %w(
@@ -111,16 +112,27 @@ module Slodown
       }
     end
 
+    # Return a regular expression that will be matched against an embedded IFRAME's
+    # source URL's host. If the expression matches, the IFRAME tag will be whitelisted
+    # in its entirety; otherwise, it will be sanitized.
+    #
+    # By default, all hosts are allowed. Override this method if this is not what
+    # you want.
+    #
     def allowed_iframe_hosts
-      # By default, allow everything. Override this to return a regular expression
-      # that will be matched against the iframe/embed's src URL's host.
       /.*/
     end
 
+    # A list of sanitize transformers to be applied to the markup that is to be
+    # sanitized. By default, we're only using +embed_transformer+.
+    #
     def transformers
       [embed_transformer]
     end
 
+    # A sanitize transformer that will check the document for IFRAME tags and
+    # validate them against +allowed_iframe_hosts+.
+    #
     def embed_transformer
       lambda do |env|
         node      = env[:node]
@@ -144,6 +156,15 @@ module Slodown
 
         { node_whitelist: [node] }
       end
+    end
+
+  private
+
+    # Applies a conversion of the current text state.
+    #
+    def convert(&blk)
+      @current = blk.call(@current)
+      self
     end
   end
 end
