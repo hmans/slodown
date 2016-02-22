@@ -113,6 +113,7 @@ If you're still set on submitting a pull request, please consider the following:
 
 ### development
 
+- Bumped minimum required version of kramdown to 1.5.0 for all the nice new syntax highlighter integrations it offers (and changes required due to deprecated/changed options.)
 - Support for Twitter oEmbed (using an unfortunately deprecated API, nonetheless.)
 - Added `Slodown::Formatter#kramdown_options`, returning a hash of kramdown configuration options. Overload this in order to customize the formatter's behavior.
 
