@@ -1,10 +1,15 @@
 module Slodown
+  # This is the base Formatter class provided by Slodown. It works right
+  # out of the box if you want to use exactly the functionality provided by
+  # it, but in most projects, you'll probably want to create a new class
+  # inheriting from this one.
+  #
   class Formatter
     def initialize(source)
       @current = @source = source.to_s
     end
 
-    # Runs the entire pipeline.
+    # Run the entire pipeline in a sane order.
     #
     def complete
       extract_metadata.markdown.autolink.sanitize
@@ -13,35 +18,38 @@ module Slodown
     # Convert the current document state from Markdown into HTML.
     #
     def markdown
-      @current = Kramdown::Document.new(@current, kramdown_options).to_slodown_html
-      self
+      convert do |current|
+        Kramdown::Document.new(current, kramdown_options).to_slodown_html
+      end
     end
 
     # Auto-link URLs through Rinku.
     #
     def autolink
-      @current = Rinku.auto_link(@current)
-      self
+      convert do |current|
+        Rinku.auto_link(current)
+      end
     end
 
     # Sanitize HTML tags.
     #
     def sanitize
-      @current = Sanitize.clean(@current, sanitize_config)
-      self
+      convert do |current|
+        Sanitize.clean(current, sanitize_config)
+      end
     end
 
     def extract_metadata
       @metadata = {}
 
-      @current = @current.each_line.drop_while do |line|
-        next false if line !~ /^#\+([a-z_]+): (.*)/
+      convert do |current|
+        current.each_line.drop_while do |line|
+          next false if line !~ /^#\+([a-z_]+): (.*)/
 
-        key, value = $1, $2
-        @metadata[key.to_sym] = value
-      end.join('')
-
-      self
+          key, value = $1, $2
+          @metadata[key.to_sym] = value
+        end.join('')
+      end
     end
 
     # Return a hash with the extracted metadata
@@ -55,6 +63,13 @@ module Slodown
     end
 
   private
+
+    # Applies a conversion of the current text state.
+    #
+    def convert(&blk)
+      @current = blk.call(@current)
+      self
+    end
 
     def kramdown_options
       {
