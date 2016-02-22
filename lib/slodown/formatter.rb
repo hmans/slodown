@@ -57,7 +57,11 @@ module Slodown
   private
 
     def kramdown_options
-      { coderay_css: 'style' }
+      {
+        syntax_highlighter: 'coderay',
+        syntax_highlighter_opts: {
+        }
+      }
     end
 
     def sanitize_config
