@@ -108,8 +108,14 @@ module Slodown
           'li' => {'id' => ['fn']},
           'sup' => {'id' => ['fnref']}
         },
-        transformers: EmbedTransformer
+        transformers: EmbedTransformer.new(allowed_iframe_hosts: allowed_iframe_hosts)
       }
+    end
+
+    def allowed_iframe_hosts
+      # By default, allow everything. Override this to return a regular expression
+      # that will be matched against the iframe/embed's src URL's host.
+      /.*/
     end
   end
 end
