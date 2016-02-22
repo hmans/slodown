@@ -84,6 +84,19 @@ Metadata can be accessed with `Slodown::Formatter#metadata`:
 formatter.metadata[:title] # => "Slodown"
 ~~~
 
+## OEmbed support
+
+Slodown extends the Markdown image syntax to support OEmbed-based embeds.
+Anything supported by the great [OEmbed gem](https://github.com/judofyr/ruby-oembed) will work. Just supply the URL:
+
+~~~markdown
+![youtube video](https://www.youtube.com/watch?v=oHg5SJYRHA0)
+~~~
+
+Some OEmbed providers will return IFRAME-based embeds. If you want to control
+which hosts are allowed to have IFRAMEs on your site, override the `Formatter#allowed_iframe_hosts` method to return a regular expression that will be matched against the IFRAME source URL's host. Please note that this will also apply to
+IFRAME HTML tags added by the user directly.
+
 ## Hints
 
 * If you want to add more transformations or change the behavior of the `#complete` method, just subclass `Slodown::Formatter` and go wild. :-)
