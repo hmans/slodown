@@ -149,11 +149,11 @@ If you're still set on submitting a pull request, please consider the following:
 
 ## Version History
 
-### development
+### 0.3.0 (2016-02-22)
 
 - Removed the dependency on CodeRay. If you want syntax highlighting in your Markdown parsing, simply add CodeRay (or Rouge, or any other highlighter supported by kramdown) to your project.
 
-### 0.2.0
+### 0.2.0 (2016-02-22)
 
 - Slodown is now whitelisting all domains for possible iframe/embed-based media embeds by default. If you don't want this, you can override `Formatter#allowed_iframe_hosts` to return a regular expression that will match against the embed URL's host.
 - Bumped minimum required version of kramdown to 1.5.0 for all the nice new syntax highlighter integrations it offers (and changes required due to deprecated/changed options.)
