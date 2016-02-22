@@ -81,18 +81,22 @@ end
 ~~~
 
 
-## OEmbed support
+## oEmbed support
 
-Slodown extends the Markdown image syntax to support OEmbed-based embeds.
-Anything supported by the great [OEmbed gem](https://github.com/judofyr/ruby-oembed) will work. Just supply the URL:
+> oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly.
+
+Slodown extends the Markdown image syntax to support oEmbed-based embeds.
+Anything supported by the great [oEmbed gem](https://github.com/judofyr/ruby-oembed) will work. Just supply the URL:
 
 ~~~markdown
 ![youtube video](https://www.youtube.com/watch?v=oHg5SJYRHA0)
 ~~~
 
-Some OEmbed providers will return IFRAME-based embeds. If you want to control
+**Note on IFRAMEs:** Some oEmbed providers will return IFRAME-based embeds. If you want to control
 which hosts are allowed to have IFRAMEs on your site, override the `Formatter#allowed_iframe_hosts` method to return a regular expression that will be matched against the IFRAME source URL's host. Please note that this will also apply to
 IFRAME HTML tags added by the user directly.
+
+**Note on Twitter:** Twitter's oEmbed endpoint will return a simple bit of markup that works okay out of the box, but can be expanded into a full tweet view client-side. For this to work, you'll want to add Twitter's [widget.js](http://platform.twitter.com/widgets.js) to your application. Please refer to the [Twitter documentation](https://dev.twitter.com/web/javascript) for full instructions.
 
 
 ### Metadata
@@ -147,7 +151,7 @@ If you're still set on submitting a pull request, please consider the following:
 
 ### development
 
-- Removed the dependency on CodeRay. If you want syntax highlighting in your Markdown parsing, simply add CodeRay (or Rogue, or any other highlighter supported by kramdown) to your project.
+- Removed the dependency on CodeRay. If you want syntax highlighting in your Markdown parsing, simply add CodeRay (or Rouge, or any other highlighter supported by kramdown) to your project.
 
 ### 0.2.0
 
