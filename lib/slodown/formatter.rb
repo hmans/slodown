@@ -73,9 +73,8 @@ module Slodown
 
     def kramdown_options
       {
-        syntax_highlighter: 'coderay',
-        syntax_highlighter_opts: {
-        }
+        syntax_highlighter: defined?(Rouge) ? 'rouge' : 'coderay',
+        syntax_highlighter_opts: { }
       }
     end
 

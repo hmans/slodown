@@ -1,7 +1,6 @@
 require 'oembed'
 require 'rinku'
 require 'kramdown'
-require 'coderay'
 require 'sanitize'
 
 require "kramdown/converter/slodown_html"

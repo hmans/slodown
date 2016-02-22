@@ -1,34 +1,34 @@
-![slodown](https://dl.dropbox.com/u/7288/hendrik.mans.de/slodown.png)
+![Slodown](https://dl.dropbox.com/u/7288/hendrik.mans.de/slodown.png)
 
-# slodown is the ultimate user input rendering pipeline.
+# Slodown is the ultimate user input rendering pipeline.
 
 [![Build Status](https://travis-ci.org/hmans/slodown.png?branch=master)](https://travis-ci.org/hmans/slodown) [![Gem Version](https://badge.fury.io/rb/slodown.png)](http://badge.fury.io/rb/slodown)
 
-**I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. slodown rolls all of these into one, and then some.**
+**I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. Slodown rolls all of these into one, and then some.**
 
-Here's what slodown does by default:
+Here's what Slodown does by default:
 
 - **render extended Markdown into HTML**. It uses the [kramdown](http://kramdown.rubyforge.org/) library, so yes, footnotes are supported!
-- **add syntax highlighting to Markdown code blocks** through [CodeRay](http://coderay.rubychan.de/).
-- **support super-easy rich media embeds**, [sloblog.io-style](http://sloblog.io/~hmans/qhdsk2SMoAU). Just point the Markdown image syntax at, say, a Youtube video, and slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
+- **add syntax highlighting to Markdown code blocks** through [CodeRay](http://coderay.rubychan.de/), [Rouge](http://rouge.jneen.net/), or any other highlighter supported by kramdown.
+- **support super-easy rich media embeds**. Just point the Markdown image syntax at, say, a Youtube video, and Slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
 - **auto-link contained URLs** using [Rinku](https://github.com/vmg/rinku), which is smart enough to not auto-link URLs contained in, say, code blocks.
-- **sanitize the generated HTML** using the white-list based [sanitize](https://github.com/rgrove/sanitize) gem.
+- **sanitize the generated HTML** using the white-list based [sanitize](https://github.com/rgrove/sanitize) gem, with some really good default configuration.
 
-slodown is an extraction from [sloblog.io](http://sloblog.io). It is very easy to extend or modify, as it's just a plain old Ruby class you can inherit from.
+Slodown is an extraction from [sloblog.io](http://sloblog.io). It is very easy to extend or modify, as it's just a plain old Ruby class you can inherit from.
 
-## Installation
+## General Approach
 
-Add this line to your application's Gemfile:
+Slodown, out of the box, implements my preferred way of handling user input, which looks like this:
 
-    gem 'slodown'
+- Convert all Markdown to HTML.
+- Don't strip HTML the user added themselves.
+- Auto-link contained URLs and email addresses.
+- Finally, and most importantly, run the entire HTML through a really, really good whitelist-based sanitizer.
 
-And then execute:
+This allows users to still add their own HTML, if required. In fact, I typically encourage users to make use of [kramdown's inline attributes], leaving it up the sanitizer to make sure they don't go crazy.
 
-    $ bundle
+If this is not what you want, you will most likely be able to bend Slodown to your will -- it's pretty flexible.
 
-Or install it yourself as:
-
-    $ gem install slodown
 
 ## Usage
 
@@ -62,6 +62,39 @@ formatter.extract_metadata.markdown.autolink.sanitize.to_s
 formatter.complete.to_s
 ~~~
 
+If you want to customize Slodown's default behavior, simply create a new class that inherits from `Slodown::Formatter` and override methods like `#kramdown_options`, or add your own behaviors.
+
+
+## Syntax Highlighting
+
+Just add [CodeRay](http://coderay.rubychan.de/) or [Rouge](http://rouge.jneen.net/) to your project to have code blocks in your Markdown syntax-highlighted. Slodown will try to detect which library you're using, but to be sure, change your `kramdown_options` accordingly. For example:
+
+~~~ ruby
+class Formatter < Slodown::Formatter
+  def kramdown_options
+    {
+      syntax_highlighter: 'coderay',
+      syntax_highlighter_opts: { css: :class }
+    }
+  end
+end
+~~~
+
+
+## OEmbed support
+
+Slodown extends the Markdown image syntax to support OEmbed-based embeds.
+Anything supported by the great [OEmbed gem](https://github.com/judofyr/ruby-oembed) will work. Just supply the URL:
+
+~~~markdown
+![youtube video](https://www.youtube.com/watch?v=oHg5SJYRHA0)
+~~~
+
+Some OEmbed providers will return IFRAME-based embeds. If you want to control
+which hosts are allowed to have IFRAMEs on your site, override the `Formatter#allowed_iframe_hosts` method to return a regular expression that will be matched against the IFRAME source URL's host. Please note that this will also apply to
+IFRAME HTML tags added by the user directly.
+
+
 ### Metadata
 
 Slodown allows metadata, such as the creation date, to be defined in the text to be processed:
@@ -84,33 +117,21 @@ Metadata can be accessed with `Slodown::Formatter#metadata`:
 formatter.metadata[:title] # => "Slodown"
 ~~~
 
-## OEmbed support
-
-Slodown extends the Markdown image syntax to support OEmbed-based embeds.
-Anything supported by the great [OEmbed gem](https://github.com/judofyr/ruby-oembed) will work. Just supply the URL:
-
-~~~markdown
-![youtube video](https://www.youtube.com/watch?v=oHg5SJYRHA0)
-~~~
-
-Some OEmbed providers will return IFRAME-based embeds. If you want to control
-which hosts are allowed to have IFRAMEs on your site, override the `Formatter#allowed_iframe_hosts` method to return a regular expression that will be matched against the IFRAME source URL's host. Please note that this will also apply to
-IFRAME HTML tags added by the user directly.
 
 ## Hints
 
 * If you want to add more transformations or change the behavior of the `#complete` method, just subclass `Slodown::Formatter` and go wild. :-)
 * Markdown transformations, HTML sanitizing, oEmbed handshakes and other operations are pretty expensive operations. For sake of performance (and stability), it is recommended that you cache the generated output in some manner.
-* Eat more Schnitzel.
+* Eat more Schnitzel. It's good for you.
 
 ## TODOs
 
-- More/better specs. slodown doesn't have a lot of functionality of its own, passing most of its duties over to the beautiful rendering gems it uses, but I'm sure there's still an opportunity or two for it to break, so, yeah, I should be adding _some_ specs.
+- More/better specs. Slodown doesn't have a lot of functionality of its own, passing most of its duties over to the beautiful rendering gems it uses, but I'm sure there's still an opportunity or two for it to break, so, yeah, I should be adding _some_ specs.
 - Better configuration for the HTML sanitizer. Right now, in order to change the sanitizing behavior, you'll need to inherit a new class from `Slodown::Formatter` and override its `#sanitize_config` method. Regarding the contents of the hash this method returns, please refer to the [sanitize documentation](https://github.com/rgrove/sanitize#custom-configuration).
 
 ## Contributing
 
-Just like with my other gems, I am trying to keep slodown as sane (and small) as possible. If you
+Just like with my other gems, I am trying to keep Slodown as sane (and small) as possible. If you
 want to contribute code, **please talk to me before writing a patch or submitting
 a pull request**! I'm serious about keeping things focused and would hate to cause
 unnecessary disappointment. Thank you.
@@ -123,6 +144,10 @@ If you're still set on submitting a pull request, please consider the following:
 4. Absolutely _no_ version bumps or similar.
 
 ## Version History
+
+### development
+
+- Removed the dependency on CodeRay. If you want syntax highlighting in your Markdown parsing, simply add CodeRay (or Rogue, or any other highlighter supported by kramdown) to your project.
 
 ### 0.2.0
 

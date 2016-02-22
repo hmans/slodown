@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Slodown::VERSION
   gem.authors       = ["Hendrik Mans"]
   gem.email         = ["hendrik@mans.de"]
-  gem.description   = %q{Markdown + oEmbed + Sanitize + CodeRay = the ultimate user input rendering pipeline.}
-  gem.summary       = %q{Markdown + oEmbed + Sanitize + CodeRay = the ultimate user input rendering pipeline.}
+  gem.description   = %q{Markdown + oEmbed + Sanitize + Syntax Highlighting = the ultimate user input rendering pipeline.}
+  gem.summary       = %q{Markdown + oEmbed + Sanitize + Syntax Highlighting = the ultimate user input rendering pipeline.}
   gem.homepage      = "https://github.com/hmans/slodown"
 
   gem.files         = `git ls-files`.split($/)
@@ -18,7 +18,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency  'kramdown', '>= 1.5.0'
-  gem.add_dependency  'coderay', '>= 1.0.0'
   gem.add_dependency  'sanitize', '>= 2.0.0'
   gem.add_dependency  'rinku', '>= 1.7.0'
   gem.add_dependency  'ruby-oembed', '>= 0.9.0'
