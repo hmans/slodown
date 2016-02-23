@@ -149,6 +149,10 @@ If you're still set on submitting a pull request, please consider the following:
 
 ## Version History
 
+### development
+
+- Changed: The Slowdown sanitizer was stripping HTML of table tags. Tables are harmless, so they're not being stripped any longer.
+
 ### 0.3.0 (2016-02-22)
 
 - Removed the dependency on CodeRay. If you want syntax highlighting in your Markdown parsing, simply add CodeRay (or Rouge, or any other highlighter supported by kramdown) to your project.

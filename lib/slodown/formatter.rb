@@ -87,6 +87,7 @@ module Slodown
           blockquote pre code kbd
           h1 h2 h3 h4 h5 h6
           img object param del
+          table tr td th
         ),
         attributes: {
           :all     => ['class', 'style', 'title', 'id'],
@@ -97,7 +98,9 @@ module Slodown
           'object' => ['width', 'height'],
           'param'  => ['name', 'value'],
           'embed'  => ['allowscriptaccess', 'width', 'height', 'src'],
-          'iframe' => ['width', 'height', 'src']
+          'iframe' => ['width', 'height', 'src'],
+          'td'     => ['colspan', 'rowspan'],
+          'th'     => ['colspan', 'rowspan']
         },
         protocols: {
           'a' => { 'href' => ['ftp', 'http', 'https', 'mailto', '#fn', '#fnref', :relative] },
