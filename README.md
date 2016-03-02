@@ -151,7 +151,9 @@ If you're still set on submitting a pull request, please consider the following:
 
 ### development
 
-- Changed: The Slowdown sanitizer was stripping HTML of table tags. Tables are harmless, so they're not being stripped any longer.
+- Feature: Block-level images are now rendered as a complete `<figure>` structure (with optional `<figcaption>`.)
+- Change: The Slodown sanitizer now allows `<figure>` and `<figcaption>` tags by default.
+- Change: The Slodown sanitizer was stripping HTML of table tags. Tables are harmless, so they're not being stripped any longer.
 
 ### 0.3.0 (2016-02-22)
 
