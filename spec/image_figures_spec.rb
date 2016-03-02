@@ -5,9 +5,6 @@ def render(text)
 end
 
 describe 'basic formatting syntax' do
-  # Just a silly little spec to get things started. I don't intend
-  # to test the whole of kramdown here. :)~
-  #
   it "converts a block-level image to a <figure> structure" do
     expect(render %[check it out:\n\n![image](image.jpg "Cute Kitten!")])
       .to eq %[<p>check it out:</p>\n\n<figure><img src="image.jpg" alt="image" title="Cute Kitten!"><figcaption>Cute Kitten!</figcaption></figure>\n]
