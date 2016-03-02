@@ -88,6 +88,7 @@ module Slodown
           h1 h2 h3 h4 h5 h6
           img object param del
           table tr td th
+          figure figcaption
         ),
         attributes: {
           :all     => ['class', 'style', 'title', 'id'],
