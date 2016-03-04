@@ -4,9 +4,6 @@
 # Markdown image elements.)
 #
 class Kramdown::Converter::SlodownHtml < Kramdown::Converter::Html
-  # Hook into image tags to allow oEmbed embeds.
-  #
-
   # In Slodown, you can use block-level image attributes for oEmbed-based
   # embeds. For this, we're hooking into #convert_p to find single block-level
   # images.
