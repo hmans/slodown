@@ -8,7 +8,7 @@
 
 Here's what Slodown does by default:
 
-- **render extended Markdown into HTML**. It uses the [kramdown](http://kramdown.rubyforge.org/) library, so yes, footnotes are supported!
+- **render extended Markdown into HTML**. It uses the [kramdown](http://kramdown.gettalong.org/) library, so yes, footnotes are supported!
 - **add syntax highlighting to Markdown code blocks** through [CodeRay](http://coderay.rubychan.de/), [Rouge](http://rouge.jneen.net/), or any other highlighter supported by kramdown.
 - **support super-easy rich media embeds**. Just point the Markdown image syntax at, say, a Youtube video, and Slodown will fetch the complete embed code through the magic of [ruby-oembed](https://github.com/judofyr/ruby-oembed).
 - **auto-link contained URLs** using [Rinku](https://github.com/vmg/rinku), which is smart enough to not auto-link URLs contained in, say, code blocks.
@@ -25,7 +25,7 @@ Slodown, out of the box, implements my preferred way of handling user input, whi
 - Auto-link contained URLs and email addresses.
 - Finally, and most importantly, run the entire HTML through a really, really good whitelist-based sanitizer.
 
-This allows users to still add their own HTML, if required. In fact, I typically encourage users to make use of [kramdown's inline attributes], leaving it up the sanitizer to make sure they don't go crazy.
+This allows users to still add their own HTML, if required. In fact, I typically encourage users to make use of [kramdown's inline attributes](http://kramdown.gettalong.org/syntax.html#inline-attribute-lists), leaving it up the sanitizer to make sure they don't go crazy.
 
 If this is not what you want, you will most likely be able to bend Slodown to your will -- it's pretty flexible.
 
