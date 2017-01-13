@@ -2,7 +2,7 @@
 
 # Slodown is the ultimate user input rendering pipeline.
 
-[![Build Status](https://travis-ci.org/hmans/slodown.png?branch=master)](https://travis-ci.org/hmans/slodown) [![Gem Version](https://badge.fury.io/rb/slodown.png)](http://badge.fury.io/rb/slodown)
+[![Gem Version](https://badge.fury.io/rb/slodown.svg)](https://badge.fury.io/rb/slodown) [![Build Status](https://travis-ci.org/hmans/slodown.svg?branch=master)](https://travis-ci.org/hmans/slodown) ![Status](https://img.shields.io/badge/status-active-brightgreen.svg)
 
 **I love Markdown. I love syntax highlighting. I love oEmbed. And last but not least, I love whitelist-based HTML sanitizing. Slodown rolls all of these into one, and then some.**
 
