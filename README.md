@@ -149,7 +149,7 @@ If you're still set on submitting a pull request, please consider the following:
 
 ## Version History
 
-### development
+### 0.4.0 (2017-01-13)
 
 - Feature: Block-level images are now rendered as a complete `<figure>` structure (with optional `<figcaption>`.)
 - Change: The Slodown sanitizer now allows `<figure>`, `<figcaption>`, `<cite>`, `<mark>`, `<del>` and `<ins>` tags by default.
