@@ -87,7 +87,7 @@ module Slodown
           blockquote cite pre code kbd
           h1 h2 h3 h4 h5 h6
           img object param del
-          table tr td th
+          table tr td th thead tbody
           figure figcaption
           mark del ins
         ),
